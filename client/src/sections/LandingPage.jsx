@@ -3,17 +3,10 @@ import { useState } from 'react';
 
 function LandingPageComponent()
 {
-  const [IsDarkMode, SetIsDarkMode] = useState(true);
-
   const HeroTitle = "MIKAL A. BURROWS";
   const HeroSubtitle = "Full Stack Developer";
   const AboutContent = "Born in the rolling hills of Ocala, I grew up under the endless skies of the Gulf Coast, where the rhythm of the waves echoed my relentless curiosity. What started as a simple dissatisfaction with the imperfect—systems that wasted time, processes that lacked fairness—evolved into a profound drive to rewrite the rules. As I matured, that spark ignited into an entrepreneurial blaze, fueled by books like *Think and Grow Rich*, which whispered secrets of mindset and mastery, teaching me that true success blooms from vision, persistence, and the courage to challenge the status quo. Through the lens of time, I've transformed obstacles into opportunities, my perfectionist's gaze spotting hidden flaws and forging elegant solutions with a blend of honesty, justice, and mercy. Kind and loyal to my core, I mentor others not for acclaim, but because sharing knowledge builds empires. Disdainful of deceit and inefficiency, I craft my path with integrity, turning the unknown into the extraordinary. In me, you see not just a developer, but a force—ready to partner, innovate, and elevate any venture to its pinnacle.";
   const CtaText = "View My Work";
-
-  const ToggleMode = () => 
-  {
-    SetIsDarkMode(!IsDarkMode);
-  };
 
   const sidebarVariants = 
   {
@@ -41,7 +34,7 @@ function LandingPageComponent()
 
   return (
     <motion.div
-      className={`container ${IsDarkMode ? 'dark-mode' : 'light-mode'}`}
+      className="container dark-mode"
     >
       <header className="header">
         <nav className="nav">
@@ -60,21 +53,16 @@ function LandingPageComponent()
         >
           <h1 className="sidebar-title">{HeroTitle}</h1>
           <h2 className="sidebar-subtitle">{HeroSubtitle}</h2>
+          <a href="tel:+17274158487" className="sidebar-link">(727) 415-8487</a>
+          <a href="mailto:burrows.mikal@gmail.com" className="sidebar-link">burrows.mikal@gmail.com</a>
           <div className="sidebar-links">
-            <a href="tel:+17274158487" className="sidebar-link">(727) 415-8487</a>
-            <a href="mailto:burrows.mikal@gmail.com" className="sidebar-link">burrows.mikal@gmail.com</a>
-            <a href="https://github.com" className="sidebar-link">GitHub</a>
-            <a href="https://linkedin.com" className="sidebar-link">LinkedIn</a>
+            <a href="https://github.com" className="sidebar-link">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" alt="GitHub" className="social-icon" />
+            </a>
+            <a href="https://linkedin.com" className="sidebar-link">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" alt="LinkedIn" className="social-icon" />
+            </a>
           </div>
-          <motion.button
-            onClick={ToggleMode}
-            className="mode-toggle"
-            aria-label="Toggle theme"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {IsDarkMode ? '🌞' : '🌙'}
-          </motion.button>
         </motion.aside>
         <div className="content-wrapper">
           <motion.section
@@ -100,11 +88,11 @@ function LandingPageComponent()
               </motion.a>
             </div>
           </motion.section>
-          <footer className="footer">
-            <p className="footer-text">© 2025 Mikal A. Burrows. Built with Precision.</p>
-          </footer>
         </div>
       </div>
+      <footer className="footer">
+        <p className="footer-text">© 2025 Mikal A. Burrows. Built with Precision.</p>
+      </footer>
     </motion.div>
   );
 }
