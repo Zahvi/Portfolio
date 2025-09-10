@@ -4,7 +4,13 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist', // Explicitly match Vercel output directory
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: 'index.html', // Relative to root
+      },
+    },
   },
-  base: '/', // Ensure correct asset paths
+  base: '/',
+  root: '.', // Root is client/
 });
