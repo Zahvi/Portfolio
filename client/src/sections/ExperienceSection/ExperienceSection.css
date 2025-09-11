@@ -1,0 +1,133 @@
+.experience-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 48px;
+}
+
+.experience-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 8px;
+  padding: 24px;
+  padding-bottom: 75px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  background: rgba(150, 150, 150, 0.1);
+  backdrop-filter: blur(10px);
+  transform: translateY(-5px);
+}
+
+.experience-date {
+  flex: 0 0 120px;
+  font-size: 12px;
+  color: #8892b0;
+  margin-right: 24px;
+}
+
+.experience-details {
+  flex: 1;
+}
+
+.experience-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.experience-company {
+  font-weight: normal;
+  color: #d3d3d3af;
+}
+
+.experience-summary {
+  font-size: 13px;
+  color: #e6f1ff;
+  margin-bottom: 12px;
+}
+
+.experience-responsibilities {
+  list-style: none;
+  padding-left: 16px;
+  margin-bottom: 12px;
+}
+
+.responsibility-item {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #d3d3d365;
+}
+
+.responsibility-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #8892b0;
+}
+
+.see-more-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 0;
+  text-align: center;
+  background: rgba(125, 125, 125, 0.05);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.experience-card:hover .see-more-banner {
+  opacity: 1;
+}
+
+.skill-chip {
+  padding: 4px 8px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #ffffff;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.resume-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.resume-button:hover {
+  background: rgba(150, 150, 150, 0.1);
+  transform: scale(1.05);
+}
+
+.resume-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}

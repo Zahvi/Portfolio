@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+import './ExperienceSection.css';
 
 function ExperienceSectionComponent() {
   // Track expanded state for each card independently
@@ -55,12 +56,12 @@ function ExperienceSectionComponent() {
         const isExpanded = !!expandedCards[index];
 
         return (
-          <motion.div
-            key={index}
+          <motion.div 
+            key={index} 
             className={`experience-card ${isExpanded ? 'expanded' : ''}`}
             custom={index}
             variants={cardVariants}
-            onClick={() => toggleExpand(index)} // entire card clickable
+            onClick={() => toggleExpand(index)}
           >
             <div className="experience-date">{exp.date}</div>
             <div className="experience-details">
@@ -69,7 +70,6 @@ function ExperienceSectionComponent() {
               </h3>
               <p className="experience-summary">{exp.summary}</p>
 
-              {/* Responsibilities with slide + fade */}
               <AnimatePresence>
                 {isExpanded && (
                   <motion.ul
@@ -79,20 +79,28 @@ function ExperienceSectionComponent() {
                     exit={{ opacity: 0, height: 0, transition: { duration: 0.15, ease: "easeInOut" } }}
                   >
                     {exp.responsibilities.map((resp, i) => (
-                      <li key={i} className="responsibility-item">{resp}</li>
+                      <li
+                        key={i}
+                        className="responsibility-item"
+                      >
+                        {resp}
+                      </li>
                     ))}
                   </motion.ul>
                 )}
               </AnimatePresence>
 
-              {/* Skills always show at bottom */}
               <div className="skills-container">
                 {exp.skills.map((skill, i) => (
-                  <span key={i} className="skill-chip">{skill}</span>
+                  <span
+                    key={i}
+                    className="skill-chip"
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
 
-              {/* See More / See Less banner (hover only) */}
               <div className="see-more-banner">
                 {isExpanded ? "See Less" : "See More"}
               </div>
@@ -102,7 +110,7 @@ function ExperienceSectionComponent() {
       })}
 
       <div className="button-container">
-        <a
+        <a 
           href="/Mikal_Burrows_Resume.htm"
           className="resume-button"
           target="_blank"
