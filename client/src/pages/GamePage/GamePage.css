@@ -1,0 +1,40 @@
+.game-container {
+  width: 100%;
+  height: 100vh; /* or a fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000; /* optional for contrast */
+}
+
+.unity-canvas {
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  max-height: 720px;
+  border: 2px solid #ffffff76;
+  border-radius: 2px;
+}
+
+.loading-screen {
+  color: #fff;
+  font-size: 18px;
+  position: absolute;
+}
+
+.back-button {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 12px;
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background-color: rgba(0,0,0,0.8);
+}

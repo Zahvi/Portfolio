@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import AboutSectionComponent from "./AboutSection/AboutSection";
-import ExperienceSectionComponent from "./ExperienceSection/ExperienceSection";
-import ProjectSectionComponent from "./ProjectSection/ProjectSection"
+import AboutSectionComponent from "../sections/AboutSection/AboutSection";
+import ExperienceSectionComponent from "../sections/ExperienceSection/ExperienceSection";
+import ProjectSectionComponent from "../sections/ProjectSection/ProjectSection"
 import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Footer from "../components/Footer/Footer";

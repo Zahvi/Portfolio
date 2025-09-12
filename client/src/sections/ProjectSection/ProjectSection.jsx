@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from "react-router-dom";
 import './ProjectSection.css';
 
 function ProjectsSectionComponent() {
+  const navigate = useNavigate();
+
   const projects = [
     {
       name: "Scholar",
@@ -18,28 +21,32 @@ function ProjectsSectionComponent() {
     },
     {
       name: "Planet Protection",
-      type: "Game",
+      type: "Video Game",
       date: "10/2021 - 11/2021",
-      description: "3D video game developed to teach environmental awareness.",
+      description: "A 3D defense game where players protect Earth by controlling a rotating force field to block incoming UFOs and asteroids. Enemies vary in speed, damage output, and the amount of health restored when destroyed, requiring strategic timing and positioning.",
       role: "Solo Developer",
       technologies: ["Unity", "C#", "Blender"],
       responsibilities: [
-        "Programmed game mechanics and player interactions using C# in Unity.",
-        "Modeled and animated 3D assets with Blender to create immersive environments.",
-        "Tested and debugged gameplay to ensure smooth player experience."
+        "Designed and developed the entire game system, from core mechanics to polished gameplay loop.",
+        "Modeled all 3D assets, including Earth, UFOs, asteroids, and the force field.",
+        "Created custom UI elements, sound effects, and animations to support the player experience.",
+        "Implemented unique enemy behaviors with varied attributes for difficulty scaling and strategy.",
+        "Programmed health/repair mechanics, collision systems, and enemy wave progression."
       ]
     },
     {
       name: "Project Starship",
-      type: "Game",
+      type: "Video Game",
       date: "07/2020 - 09/2020",
-      description: "2D space exploration game developed to experiment with game design mechanics.",
+      description: "A fast-paced 2D arcade shooter where players control three color-coded spaceships that can be swapped in real-time. To destroy enemies, the player must attack with the matching-colored ship. Each ship has its own unique special ability, which is powered by destroying asteroids of the corresponding color.",
       role: "Solo Developer",
-      technologies: ["Unity", "C#"],
+      technologies: ["Unity", "C#", "Krita"],
       responsibilities: [
-        "Designed levels and game logic using Unity and C#.",
-        "Implemented scoring, progression, and player controls.",
-        "Conducted user testing and iterated on feedback to improve gameplay."
+        "Designed and developed the entire game from scratch, including gameplay mechanics, enemy logic, and scoring system.",
+        "Hand crafted all pixel art sprites, UI elements, and animations.",
+        "Composed and implemented all sound effects and integrated them into gameplay",
+        "Programmed custom systems for color-matching combat, ship-switching mechanics, and special abilities.",
+        "Built energy management and resource-replenishing systems tied to asteroid destruction.",
       ]
     }
   ];
@@ -51,8 +58,13 @@ function ProjectsSectionComponent() {
   };
 
   const handleCardClick = (project) => {
-    console.log("Card clicked:", project.name);
-    // modal or navigation can go here
+    if (project.type === "Video Game") {
+      const slug = project.name.toLowerCase().replace(/\s+/g, "-");
+      navigate(`/game/${slug}`);
+    } 
+    else {
+      console.log("Non-game project clicked:", project.name);
+    }
   };
 
   return (
@@ -97,7 +109,6 @@ function ProjectsSectionComponent() {
               ))}
             </ul>
 
-            {/* Banner purely CSS-controlled */}
             <div className="view-project-banner">
               View Project
             </div>
