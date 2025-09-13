@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPageComponent from './pages/LandingPage';
+import LandingPageComponent from './pages/LandingPage/LandingPage';
 import GamePage from './pages/GamePage/GamePage';
 
 console.log('App.jsx loaded');

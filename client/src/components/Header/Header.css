@@ -24,6 +24,12 @@
   transition: color 0.3s ease;
 }
 
+.nav-link.active {
+  color: #ffffff; /* highlight color */
+  font-weight: 600;
+  border-bottom: 1px solid #ffffff;
+}
+
 .nav-link:hover {
   color: #ffffff;
 }

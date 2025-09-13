@@ -48,7 +48,7 @@ function Sidebar({ setBlurBackground, setShowFullHeadshot }) {
 
             <div className="sidebar-social-links">
                 <a
-                    href="https://github.com"
+                    href="https://github.com/Zahvi"
                     className="sidebar-link"
                 >
                     <img
@@ -58,7 +58,7 @@ function Sidebar({ setBlurBackground, setShowFullHeadshot }) {
                     />
                 </a>
                 <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/mikalburrows/"
                     className="sidebar-link"
                 >
                     <img
