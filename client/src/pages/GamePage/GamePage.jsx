@@ -4,13 +4,13 @@ import "./GamePage.css";
 
 function GamePage() {
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const { id } = useParams(); // matches App.jsx route
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
-  // Map project slugs to Unity build directories
   const gameBuilds = {
-    "planet-protection": "/unity/planet-protection/Build",
-    "project-starship": "/unity/project-starship/Build"
+    "planet-protection": `${backendUrl}/unity/planet-protection/Build`,
+    "project-starship": `${backendUrl}/unity/project-starship/Build`,
   };
 
   const buildUrl = gameBuilds[id];
@@ -21,17 +21,14 @@ function GamePage() {
 
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: `${buildUrl}/Dist.loader.js`,
-    dataUrl: `${buildUrl}/Dist.data`,
-    frameworkUrl: `${buildUrl}/Dist.framework.js`,
-    codeUrl: `${buildUrl}/Dist.wasm`,
+    dataUrl: `${buildUrl}/Dist.data.unityweb`,
+    frameworkUrl: `${buildUrl}/Dist.framework.js.unityweb`,
+    codeUrl: `${buildUrl}/Dist.wasm.unityweb`,
   });
 
   return (
     <div>
-      <button
-        className="back-button"
-        onClick={() => navigate("/")}
-      >
+      <button className="back-button" onClick={() => navigate("/")}>
         ← Back to Portfolio
       </button>
       <div className="game-container">
