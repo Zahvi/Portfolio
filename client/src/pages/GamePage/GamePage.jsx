@@ -1,11 +1,10 @@
-// client/src/pages/GamePage/GamePage.jsx  (or your path)
+// client/src/pages/GamePage/GamePage.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UnityPlayer = ({ loaderUrl, dataUrl, frameworkUrl, codeUrl }) => {
-  // Lazy import react-unity-webgl inside the component so we only call the hook
-  // when we actually want to render Unity (avoids premature loading attempts).
   const { Unity, useUnityContext } = require("react-unity-webgl");
+
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl,
     dataUrl,
@@ -29,7 +28,7 @@ function GamePage() {
   const [loaderCheck, setLoaderCheck] = useState({ checking: true, ok: false, info: null });
 
   const rawBackend = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-  const backendUrl = String(rawBackend).replace(/\/+$/, ""); // remove trailing slashes reliably
+  const backendUrl = String(rawBackend).replace(/\/+$/, "");
 
   const gameBuilds = {
     "planet-protection": `${backendUrl}/unity/planet-protection/Build`,
@@ -37,17 +36,13 @@ function GamePage() {
   };
 
   const buildUrl = gameBuilds[id];
-
-  if (!buildUrl) {
-    return <div className="game-not-found">Game not found.</div>;
-  }
+  if (!buildUrl) return <div className="game-not-found">Game not found.</div>;
 
   const loaderUrl = `${buildUrl}/Dist.loader.js`;
   const dataUrl = `${buildUrl}/Dist.data.unityweb`;
   const frameworkUrl = `${buildUrl}/Dist.framework.js.unityweb`;
   const codeUrl = `${buildUrl}/Dist.wasm.unityweb`;
 
-  // pre-check loader URL so we can show a meaningful error if it's returning HTML/404
   useEffect(() => {
     let cancelled = false;
     async function checkLoader() {
@@ -59,12 +54,10 @@ function GamePage() {
           if (!cancelled) setLoaderCheck({ checking: false, ok: false, info: `HTTP ${resp.status} ${resp.statusText}` });
           return;
         }
-        // if server returned index.html (text/html) we should show a helpful error
         if (ct.includes("text/html")) {
           if (!cancelled) setLoaderCheck({ checking: false, ok: false, info: `Returned content-type text/html (probably a rewrite). URL: ${loaderUrl}` });
           return;
         }
-        // Good: serves JS
         if (!cancelled) setLoaderCheck({ checking: false, ok: true, info: `OK — content-type: ${ct}` });
       } catch (err) {
         if (!cancelled) setLoaderCheck({ checking: false, ok: false, info: String(err) });
@@ -87,7 +80,7 @@ function GamePage() {
           <h3>Unable to load Unity loader</h3>
           <p>{loaderCheck.info}</p>
           <p>
-            Check that your backend is deployed and that the loader URL is reachable:
+            Check that your backend is deployed and reachable:
             <br />
             <code>{loaderUrl}</code>
           </p>
