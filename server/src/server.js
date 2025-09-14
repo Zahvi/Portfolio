@@ -1,12 +1,10 @@
 const express = require("express");
-const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
+// Unity builds root (inside server/public/unity)
 const unityRoot = path.join(__dirname, "../public/unity");
 
 function getContentType(fileName) {
@@ -18,22 +16,25 @@ function getContentType(fileName) {
   return "application/octet-stream";
 }
 
+// Serve Unity builds with Brotli and CORS
 app.get("/unity/:project/Build/*", (req, res) => {
   const { project } = req.params;
   const filePathInBuild = req.params[0];
   const filePath = path.join(unityRoot, project, "Build", filePathInBuild);
   const brFilePath = filePath + ".br";
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*"); // allow frontend cross-origin
 
   const acceptEncoding = req.headers["accept-encoding"] || "";
 
+  // Serve Brotli if available and accepted
   if (acceptEncoding.includes("br") && fs.existsSync(brFilePath)) {
     res.setHeader("Content-Encoding", "br");
     res.setHeader("Content-Type", getContentType(filePathInBuild));
     return res.sendFile(brFilePath);
   }
 
+  // Fallback to normal file
   if (fs.existsSync(filePath)) {
     res.setHeader("Content-Type", getContentType(filePathInBuild));
     return res.sendFile(filePath);
@@ -42,6 +43,7 @@ app.get("/unity/:project/Build/*", (req, res) => {
   res.status(404).send("File not found");
 });
 
+// Health check / API fallback
 app.get("/", (req, res) => res.send("✅ Backend running"));
 
 const PORT = process.env.PORT || 5000;
