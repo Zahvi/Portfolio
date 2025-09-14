@@ -16,14 +16,15 @@ function getContentType(fileName) {
   return "application/octet-stream";
 }
 
-// Serve Unity builds with Brotli and CORS
+// Serve Unity builds with Brotli + CORS
 app.get("/unity/:project/Build/*", (req, res) => {
   const { project } = req.params;
   const filePathInBuild = req.params[0];
   const filePath = path.join(unityRoot, project, "Build", filePathInBuild);
   const brFilePath = filePath + ".br";
 
-  res.setHeader("Access-Control-Allow-Origin", "*"); // allow frontend cross-origin
+  res.setHeader("Access-Control-Allow-Origin", "*"); // CORS
+  res.setHeader("Cache-Control", "public, max-age=31536000, immutable"); // cache Unity builds
 
   const acceptEncoding = req.headers["accept-encoding"] || "";
 
@@ -40,10 +41,11 @@ app.get("/unity/:project/Build/*", (req, res) => {
     return res.sendFile(filePath);
   }
 
+  console.error("Unity file not found:", filePath);
   res.status(404).send("File not found");
 });
 
-// Health check / API fallback
+// Health check / fallback
 app.get("/", (req, res) => res.send("✅ Backend running"));
 
 const PORT = process.env.PORT || 5000;
