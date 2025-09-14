@@ -10,7 +10,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Path to Unity builds inside server/public/unity
 const unityPath = path.join(__dirname, "../public/unity");
 
 // Serve Unity builds with Brotli support
