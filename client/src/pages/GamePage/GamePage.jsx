@@ -7,7 +7,8 @@ function GamePage() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+  // Remove trailing slash if present
+  const backendUrl = (import.meta.env.VITE_BACKEND_URL || "http://localhost:5000").replace(/\/$/, "");
 
   const gameBuilds = {
     "planet-protection": `${backendUrl}/unity/planet-protection/Build`,
@@ -15,7 +16,7 @@ function GamePage() {
   };
 
   const buildUrl = gameBuilds[id];
-  if (!buildUrl) return <div>Game not found</div>;
+  if (!buildUrl) return <div className="game-not-found">Game not found.</div>;
 
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: `${buildUrl}/Dist.loader.js`,
@@ -26,12 +27,10 @@ function GamePage() {
 
   return (
     <div>
-      <button onClick={() => navigate("/")}>← Back</button>
+      <button className="back-button" onClick={() => navigate("/")}>← Back to Portfolio</button>
       <div className="game-container">
         {!isLoaded && (
-          <div className="loading-screen">
-            Loading {Math.round(loadingProgression * 100)}%
-          </div>
+          <div className="loading-screen">Loading {Math.round(loadingProgression * 100)}%</div>
         )}
         <Unity unityProvider={unityProvider} className="unity-canvas" />
       </div>
