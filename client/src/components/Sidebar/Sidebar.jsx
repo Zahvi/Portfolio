@@ -43,7 +43,7 @@ function Sidebar({ setBlurBackground, setShowFullHeadshot }) {
                 className="sidebar-headshot-container"
                 onClick={openModal}
             >
-                <img src="/headshot.jpg" className="sidebar-headshot" alt="Headshot" />
+                <img src="/headshot.jpg" className="sidebar-headshot" />
             </div>
 
             <div className="sidebar-social-links">

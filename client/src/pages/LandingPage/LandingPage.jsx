@@ -62,7 +62,6 @@ function LandingPageComponent() {
         >
           <img
             src="/headshot.jpg"
-            alt="Full Headshot"
             className="headshot-full"
           />
         </div>

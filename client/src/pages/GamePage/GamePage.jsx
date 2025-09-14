@@ -9,9 +9,9 @@ function GamePage() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
   const gameBuilds = {
-    "planet-protection": `${backendUrl}/unity/planet-protection/Build`,
-    "project-starship": `${backendUrl}/unity/project-starship/Build`,
-  };
+  "planet-protection": `${backendUrl.replace(/\/$/, "")}/unity/planet-protection/Build`,
+  "project-starship": `${backendUrl.replace(/\/$/, "")}/unity/project-starship/Build`,
+};
 
   const buildUrl = gameBuilds[id];
 
